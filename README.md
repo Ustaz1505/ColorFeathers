@@ -1,3 +1,5 @@
+[![](https://img.shields.io/modrinth/dt/ysyRbcG5?logo=modrinth)](https://modrinth.com/plugin/colorfeathers)
+-----
 # ColorFeathers
 Usage: ```/sign``` while holding feather in offhand and item in main hand.
 
