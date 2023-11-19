@@ -1,0 +1,21 @@
+name: colorFeathers
+version: '${project.version}'
+main: com.ustaz1505.cfs.ColorFeathers
+api-version: '1.20'
+prefix: ColorFeathers
+load: STARTUP
+authors: [Ustaz1505]
+description: Plugin for signing items with /sign command
+website: ustaz1505.ru
+
+commands:
+  sign:
+    description: Подписать предмет своим ником
+    usage: /sign
+    permission: colorFeathers.sign
+  colorfeathers:
+    description: Настройка плагина
+    usage: /colorfeathers <Метод>
+    permission: colorFeathers.cfs
+    aliases:
+      - cfs
