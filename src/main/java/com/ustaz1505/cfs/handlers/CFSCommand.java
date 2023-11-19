@@ -27,7 +27,7 @@ public class CFSCommand implements CommandExecutor {
 
                 reloadConfigs();
 
-                log.info(logPrefix + getMessagesConfig().getString("reload-msg"));
+                log.info(getMessagesConfig().getString("reload-msg"));
                 return true;
             }
         }
@@ -51,7 +51,6 @@ public class CFSCommand implements CommandExecutor {
 
         //
 
-        logPrefix = config.getString("log-prefix") + " ";
         msgPrefix = config.getString("msg-prefix") + " ";
 
         notPlayerError = getMessagesConfig().getString("not-player-err");

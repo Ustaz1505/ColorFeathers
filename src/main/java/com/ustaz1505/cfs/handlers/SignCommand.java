@@ -38,11 +38,11 @@ public class SignCommand implements CommandExecutor {
                 ItemStack renamingItem = inventory.getItemInMainHand();
                 ItemStack toolItem = inventory.getItemInOffHand();
                 if (renamingItem.getType() == Material.AIR) {
-                    player.sendMessage(ChatColor.RED + "Вы должны иметь предмет, который вы хотите подписать в основной руке");
+                    player.sendMessage(ChatColor.RED + getMessagesConfig().getString("no-item-err"));
                     return true;
                 }
                 if (toolItem.getType() != Material.FEATHER) {
-                    player.sendMessage(ChatColor.RED + getMessagesConfig().getString("no-ink-err"));
+                    player.sendMessage(ChatColor.RED + getMessagesConfig().getString("no-tool-err"));
                     return true;
                 }
 
@@ -55,7 +55,7 @@ public class SignCommand implements CommandExecutor {
                     hexColor = toolData.get(colorKey, PersistentDataType.STRING);
                 }
                 PersistentDataContainer renamingItemData = Objects.requireNonNull(renamingItem.getItemMeta()).getPersistentDataContainer();
-                long DEFAULT_COOLDOWN = 0;
+                long DEFAULT_COOLDOWN = cfs.getConfig().getInt("cooldown");
                 cooldownManager.setCooldown(playerId, Duration.ofSeconds(DEFAULT_COOLDOWN));
                 boolean isNotSigned = true;
 
@@ -96,8 +96,7 @@ public class SignCommand implements CommandExecutor {
                             // Выпадение пера!!111!!!!1!1
                             if (!toolData.has(colorKey, PersistentDataType.STRING)) {
                                 double chance = Math.random();
-                                if (chance < 0.0009) {
-                                    log.info("Прокнуло");
+                                if (chance < cfs.getConfig().getDouble("legendary-percentage") / 100) {
                                     String hex = String.format("#%02x%02x%02x",
                                             (int) (Math.random() * 256),
                                             (int) (Math.random() * 256),
@@ -125,15 +124,15 @@ public class SignCommand implements CommandExecutor {
                     }
                 }
                 if (isNotSigned) {
-                    player.sendMessage(ChatColor.RED + logPrefix + getMessagesConfig().getString("no-ink-err"));
+                    player.sendMessage(ChatColor.RED + getMessagesConfig().getString("no-ink-err"));
                 }
 
             } else {
-                player.sendMessage(ChatColor.RED + logPrefix + getMessagesConfig().getString("cooldown-err"));
+                player.sendMessage(ChatColor.RED + getMessagesConfig().getString("cooldown-err"));
             }
             return true;
         } else {
-            sender.sendMessage(logPrefix + notPlayerError);
+            log.info(notPlayerError);
             return true;
         }
 

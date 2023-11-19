@@ -1,0 +1,14 @@
+# ColorFeathers config v1.0
+
+# Selected messages config
+messages-file: "messages_ru.yml"
+# Advancement to grant to player when he got legendary feather
+advancement: "server:feather"
+# Sound that will be played when player signs an item
+sign-sound: "minecraft:entity.villager.work_cartographer"
+# You can use color codes in msg-prefix value
+msg-prefix: "[&cC&6o&el&ao&3r&rFeathers]"
+# Cooldown between using /sign command
+cooldown: 5
+# Percentage of getting legendary feather
+legendary-percentage: 1

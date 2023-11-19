@@ -16,7 +16,6 @@ public final class ColorFeathers extends JavaPlugin {
 
     public static Plugin cfs;
     public static Logger log;
-    public static String logPrefix;
     public static String msgPrefix;
     public static String notPlayerError;
     public static FileConfiguration config;
@@ -35,7 +34,6 @@ public final class ColorFeathers extends JavaPlugin {
 
         createMessagesConfig();
 
-        logPrefix = config.getString("log-prefix") + " ";
         msgPrefix = config.getString("msg-prefix") + " ";
         notPlayerError = getMessagesConfig().getString("not-player-err");
 
