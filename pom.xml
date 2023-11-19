@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ustaz1505</groupId>
-    <artifactId>cfs</artifactId>
-    <version>0.1.0</version>
+    <artifactId>colorFeathers</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>colorFeathers</name>

@@ -87,7 +87,11 @@ public class SignCommand implements CommandExecutor {
                             }
                             newItemMeta.setLore(currentLore);
                             newRenamingItem.setItemMeta(newItemMeta);
-                            inventory.addItem(newRenamingItem);
+                            if ((inventory.firstEmpty() == -1)  && (getAmount(player, newRenamingItem) % newRenamingItem.getMaxStackSize() == 0)) {
+                                player.getWorld().dropItem(player.getLocation(), newRenamingItem);
+                            } else {
+                                inventory.addItem(newRenamingItem);
+                            }
                             isNotSigned = false;
                             player.playSound(player.getLocation(), Objects.requireNonNull(config.getString("sign-sound")), 100, 1);
                             renamingItem.setAmount(renamingItem.getAmount() - 1);
@@ -96,7 +100,7 @@ public class SignCommand implements CommandExecutor {
                             // Выпадение пера!!111!!!!1!1
                             if (!toolData.has(colorKey, PersistentDataType.STRING)) {
                                 double chance = Math.random();
-                                if (chance < cfs.getConfig().getDouble("legendary-percentage") / 100) {
+                                if (chance < (cfs.getConfig().getDouble("legendary-percentage") / 100)) {
                                     String hex = String.format("#%02x%02x%02x",
                                             (int) (Math.random() * 256),
                                             (int) (Math.random() * 256),
@@ -115,7 +119,12 @@ public class SignCommand implements CommandExecutor {
                                         toolItem.setAmount(toolItem.getAmount() - 1);
                                         newToolItem.setAmount(1);
                                         newToolItem.setItemMeta(toolItemMeta);
-                                        inventory.addItem(newToolItem);
+
+                                        if ((inventory.firstEmpty() == -1)  && (getAmount(player, newToolItem) % newToolItem.getMaxStackSize() == 0)) {
+                                            player.getWorld().dropItem(player.getLocation(), newToolItem);
+                                        } else {
+                                            inventory.addItem(newToolItem);
+                                        }
                                     }
                                 }
                             }
@@ -146,5 +155,18 @@ public class SignCommand implements CommandExecutor {
             text = text.replace(color, net.md_5.bungee.api.ChatColor.of(color) + "");
         }
         return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', text);
+    }
+
+    public static int getAmount(Player arg0, ItemStack arg1) {
+        if (arg1 == null)
+            return 0;
+        int amount = 0;
+        for (int i = 0; i < 36; i++) {
+            ItemStack slot = arg0.getInventory().getItem(i);
+            if (slot == null || !slot.isSimilar(arg1))
+                continue;
+            amount += slot.getAmount();
+        }
+        return amount;
     }
 }
