@@ -1,7 +1,7 @@
 # ColorFeathers config v1.0
 
 # Selected messages config
-messages-file: "messages_ru.yml"
+messages-file: "messages_en-us.yml"
 # Advancement to grant to player when he got legendary feather
 advancement: "server:feather"
 # Sound that will be played when player signs an item
