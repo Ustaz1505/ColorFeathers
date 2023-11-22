@@ -12,3 +12,5 @@ no-ink-err: "You have no ink in your inventory!"
 cooldown-err: "Too often!"
 # This message will be sent to the player when the plugin is reloaded
 reload-msg: "Plugin successfully reloaded"
+# This message will be sent to the player when he uses the command not the right way
+wrong-usage: "Wrong command usage!"
