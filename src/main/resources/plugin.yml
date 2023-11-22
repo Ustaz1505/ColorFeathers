@@ -7,6 +7,7 @@ load: STARTUP
 authors: [Ustaz1505]
 description: Plugin for signing items with /sign command
 website: ustaz1505.ru
+folia-supported: true
 
 commands:
   sign:

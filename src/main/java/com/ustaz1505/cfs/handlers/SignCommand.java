@@ -1,10 +1,13 @@
 package com.ustaz1505.cfs.handlers;
 
 import com.ustaz1505.cfs.CooldownManager;
+import io.papermc.paper.threadedregions.scheduler.EntityScheduler;
+import io.papermc.paper.threadedregions.scheduler.GlobalRegionScheduler;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -26,6 +29,15 @@ import static com.ustaz1505.cfs.ColorFeathers.getMessagesConfig;
 public class SignCommand implements CommandExecutor {
 
     private final CooldownManager cooldownManager = new CooldownManager();
+
+    private static boolean isFolia() {
+        try {
+            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -106,9 +118,15 @@ public class SignCommand implements CommandExecutor {
                                             (int) (Math.random() * 256),
                                             (int) (Math.random() * 256));
 
-                                    CommandSender console = Bukkit.getConsoleSender();
-                                    Bukkit.dispatchCommand(console, "advancement grant " + player.getName() + " only " + config.getString("advancement"));
-
+                                    // Advancement granting
+                                    if (config.getBoolean("grant-advancement")) {
+                                        CommandSender console = Bukkit.getConsoleSender();
+                                        if (isFolia()) {
+                                            sender.getServer().getGlobalRegionScheduler().run(cfs, task -> Bukkit.dispatchCommand(console, "advancement grant " + player.getName() + " only " + config.getString("advancement")));
+                                        } else {
+                                            Bukkit.dispatchCommand(console, "advancement grant " + player.getName() + " only " + config.getString("advancement"));
+                                        }
+                                    }
 
                                     toolItemMeta.setLore(List.of(hexColor(hex)+"★"));
                                     toolData.set(colorKey, PersistentDataType.STRING, hex);

@@ -16,6 +16,10 @@ import java.util.Objects;
 public class CFSCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @ NotNull Command command, @NotNull String label, String[] args) {
+        if (args.length != -1) {
+            log.info(getMessagesConfig().getString("wrong-usage"));
+            return false;
+        }
         if (Objects.equals(args[0], "reload")) {
             if (sender instanceof Player) {
 
