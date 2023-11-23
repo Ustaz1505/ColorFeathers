@@ -71,8 +71,8 @@ public class SignCommand implements CommandExecutor {
                 cooldownManager.setCooldown(playerId, Duration.ofSeconds(DEFAULT_COOLDOWN));
                 boolean isNotSigned = true;
 
-                if (renamingItemData.has(isSignedKey, PersistentDataType.BOOLEAN)) {
-                    if (Boolean.TRUE.equals(renamingItemData.get(isSignedKey, PersistentDataType.BOOLEAN))) {
+                if (renamingItemData.has(isSignedKey, PersistentDataType.INTEGER)) {
+                    if (renamingItemData.get(isSignedKey, PersistentDataType.INTEGER) == 1) {
                         player.sendMessage(ChatColor.RED + getMessagesConfig().getString("already-signed-err"));
                         return true;
                     }
@@ -88,7 +88,7 @@ public class SignCommand implements CommandExecutor {
                             ItemMeta newItemMeta = newRenamingItem.getItemMeta();
                             assert newItemMeta != null;
                             PersistentDataContainer data = newItemMeta.getPersistentDataContainer();
-                            data.set(isSignedKey, PersistentDataType.BOOLEAN, true);
+                            data.set(isSignedKey, PersistentDataType.INTEGER, 1);
                             List<String> currentLore = Objects.requireNonNull(newItemMeta).getLore();
                             if (currentLore == null) {
                                 currentLore = List.of((Objects.equals(hexColor, "") ? ChatColor.DARK_GRAY : hexColor(hexColor)) +
