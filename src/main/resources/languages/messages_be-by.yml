@@ -1,0 +1,16 @@
+# ColorFeathers messages config v1.0
+
+# This message will be sent to the player when he doesn't have an item to sign
+no-item-err: "Вы павінны трымаць прадмет, які вы хаціце падпісаць у галоўнай руцэ."
+# This message will be sent to the player when he doesn't have a feather in their hand
+no-tool-err: "Вы павінны трымаць пяро ў другой руцэ."
+# This message will be sent to the player if the item he is trying to sign is already signed.
+already-signed-err: "Гэты прадмет ужо падпісаны!"
+# This message will be sent to the player if he does not have ink in his inventory.
+no-ink-err: "У вас няма чарніл у інвентары!"
+# This message will be sent to the player when the player is on cooldown
+cooldown-err: "Занадта часта!"
+# This message will be sent to the player when the plugin is reloaded
+reload-msg: "Плагін паспяхова перазагружаны"
+# This message will be sent to the player when he uses the command not the right way
+wrong-usage: "Нявернае выкарыстанне каманды!"
