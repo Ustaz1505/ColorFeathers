@@ -9,10 +9,11 @@ All parameters are configurable in `/plugins/colorFeathers/config.yml`
 
 If you want to change language you can use these language files in your `config.yml`:
 
-| Language | Code  |        File        |
-|:--------:|:-----:|:------------------:|
-| Russian  |  ru   |  messages_ru.yml   |
-| English  | en-us | messages_en-us.yml |
+|  Language  | Code  |        File        |
+|:----------:|:-----:|:------------------:|
+|  Russian   |  ru   |  messages_ru.yml   |
+|  English   | en-us | messages_en-us.yml |
+| Belarusian | be-by | messages_be-by.yml |
 
 You can also add your own language to `/plugins/EasyPM/languages/` and use it as well.
 

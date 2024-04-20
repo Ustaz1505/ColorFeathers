@@ -58,6 +58,7 @@ public final class ColorFeathers extends JavaPlugin {
             customConfigFile.getParentFile().mkdirs();
             saveResource("languages/messages_ru.yml", false);
             saveResource("languages/messages_en-us.yml", false);
+            saveResource("languages/messages_be-by.yml", false);
         }
 
         customConfig = new YamlConfiguration();
