@@ -1,7 +1,9 @@
-# ColorFeathers config v1.0
+# ColorFeathers config v1.1
 
 # Selected messages config
 messages-file: "messages_en-us.yml"
+# Use legendary color in messages
+colored-messages: true
 # Advancement to grant to player when he got legendary feather
 advancement: "server:feather"
 # Will the plugin grant an advancement when player got legendary feather

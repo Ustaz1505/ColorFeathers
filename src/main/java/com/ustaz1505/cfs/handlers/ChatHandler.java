@@ -12,6 +12,8 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+
+import static com.ustaz1505.cfs.ColorFeathers.config;
 import static com.ustaz1505.cfs.handlers.SignCommand.hexColor;
 
 import java.util.Objects;
@@ -21,6 +23,11 @@ import static com.ustaz1505.cfs.ColorFeathers.cfs;
 public class ChatHandler implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event) {
+
+        if (!config.getBoolean("colored-messages")) {
+            return;
+        }
+
         Player player = event.getPlayer();
         PlayerInventory inventory = player.getInventory();
         ItemStack toolItem = inventory.getItemInOffHand();

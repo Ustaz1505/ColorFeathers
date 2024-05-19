@@ -20,3 +20,5 @@ commands:
     permission: colorFeathers.cfs
     aliases:
       - cfs
+
+softdepend: [PlaceholderAPI]
