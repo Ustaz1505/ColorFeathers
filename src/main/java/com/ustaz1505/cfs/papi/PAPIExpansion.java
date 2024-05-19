@@ -15,7 +15,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 import static com.ustaz1505.cfs.ColorFeathers.cfs;
-import static com.ustaz1505.cfs.ColorFeathers.log;
 import static com.ustaz1505.cfs.handlers.SignCommand.hexColor;
 
 public class PAPIExpansion extends PlaceholderExpansion {
