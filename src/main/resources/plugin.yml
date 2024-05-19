@@ -11,11 +11,11 @@ folia-supported: true
 
 commands:
   sign:
-    description: Подписать предмет своим ником
+    description: Sign an item with your nickname
     usage: /sign
     permission: colorFeathers.sign
   colorfeathers:
-    description: Настройка плагина
+    description: Plugin configuring
     usage: /colorfeathers <Метод>
     permission: colorFeathers.cfs
     aliases:

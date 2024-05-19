@@ -12,6 +12,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bstats.bukkit.Metrics;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.util.Objects;
@@ -45,21 +46,25 @@ public final class ColorFeathers extends JavaPlugin {
 
         msgPrefix = config.getString("msg-prefix") + " ";
         notPlayerError = getMessagesConfig().getString("not-player-err");
-
+        
         int pluginId = 20337;
         Metrics metrics = new Metrics(this, pluginId);
 
-
-        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            log.info("PlaceholderAPI detected...");
-            papiExpansion = new PAPIExpansion(this);
-            boolean result = papiExpansion.register();
-            if (result) {
-                log.info("PlaceholderAPI hook registered successfully!");
-            } else {
-                log.info("PlaceholderAPI hook registration failed!");
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                    log.info("PlaceholderAPI detected...");
+                    papiExpansion = new PAPIExpansion(cfs);
+                    boolean result = papiExpansion.register();
+                    if (result) {
+                        log.info("PlaceholderAPI hook registered successfully!");
+                    } else {
+                        log.info("PlaceholderAPI hook registration failed!");
+                    }
+                }
             }
-        }
+        }.runTask(this);
 
         getServer().getPluginManager().registerEvents(new ChatHandler(), cfs);
         Objects.requireNonNull(this.getCommand("sign")).setExecutor(new SignCommand());
